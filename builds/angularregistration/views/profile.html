@@ -1,0 +1,16 @@
+
+
+
+<div class="card meetings cf">
+
+    <div  ng-show="currentUser">
+
+        <h1>Hello this is {{currentUser.firstname | uppercase}} {{currentUser.lastname | uppercase}}'S profile page</h1>
+        <h2>your email is : {{currentUser.email}}</h2>
+
+        </div>
+
+        <a class="btn btn-checkin tooltip"
+        ng-href="#/MyColabs"><span>colab Requests</span></a>
+        <span class="text">colab Requests</span>
+</div>

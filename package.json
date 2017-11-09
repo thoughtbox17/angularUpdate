@@ -1,0 +1,15 @@
+{
+  "name": "angularRegistration",
+  "version": "0.0.1",
+  "description": "An application for sharing ideas.",
+  "repository": {
+    "type": "git"
+
+  },
+  "author": "John Dunne",
+  "devDependencies": {
+    "gulp": "^3.9.1",
+    "gulp-util": "^2.2.20",
+    "gulp-webserver": "^0.8.1"
+  }
+}

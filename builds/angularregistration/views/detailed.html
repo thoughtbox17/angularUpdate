@@ -1,0 +1,32 @@
+<section class="artistinfo">
+    <div class="artist cf" ng-model="theThings">
+        <a href="#/details/{{prevItem}}" class="btn btn-left">&lt;</a>
+        <a href="#/details/{{nextItem}}" class="btn btn-left">&gt;</a>
+        <h1>{{theThings[whichItem].name}}</h1>
+
+        <div class="info">
+
+            <!-- <img ng-src="images/{{artists[whichItem].shortname}}_tn.jpg" alt="Photo of {{artists[whichItem].name}}"> -->
+            <div class="bio">{{theThings[whichItem].bio}}</div>
+
+            </div>
+        </div>
+        <script>
+        $scope.userid = {{theThings[whichItem.userId]}}
+        var user = $scope.userid;
+        </script>
+        <a href="#/search">&laquo; Back to search</a>
+        <a class="btn btn-checkin tooltip"
+        ng-href="#/colab/{{currentUser.regUser}}/{{theThings[whichItem].userId}}"><span>colab</span></a>
+        <span class="text">colab</span>
+
+
+
+
+
+
+        <!-- <h2>{{theThings[whichItem].userId}}</h2> -->
+
+
+
+</section>

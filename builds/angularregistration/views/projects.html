@@ -1,0 +1,40 @@
+<div class="card meetings cf">
+
+  <div class="textintro">
+
+      <h1>Upload Your Idea</h1>
+      <form class="formgroup addmeeting cf"
+      name="myform"
+      ng-submit="addProject()"
+      novalidate>
+      <div class="inputwrapper2">
+          <input type="text" name="name"
+          placeholder="Name"
+          ng-model="name" ng-required="true">
+      </div>
+      <div class="inputwrapper2">
+          <input type="text" name="category"
+          placeholder="Category"
+          ng-model="category" ng-required="true">
+      </div>
+      <div class="inputwrapper">
+          <input type="text" name="bio"
+          placeholder="Idea"
+          ng-model="bio" ng-required="true">
+      </div>
+
+      <button type="submit" class="btn"
+      ng-disable="myform.$invalid">+</button>
+  </form>
+  </div>
+<!--
+<div class="card meetings cf">
+  <h2>Project Ideas</h2>
+   <div class="meeting" ng-repeat="(key,theproject) in theThings">
+   <button class="btn btn-delete tooltip"
+   ng-click="deleteMeeting(key)"><span>delete this</span></button>
+   <span class="text">{{theproject.idea}}</span>
+   </div>
+   </div> -->
+
+</div><!-- meetings cf -->
