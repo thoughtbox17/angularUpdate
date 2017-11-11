@@ -4,7 +4,7 @@
             
         <div class="theUserThing"   ng-repeat="(key,theUserThing) in theUserThings">
     
-            <h1> {{theUserThing.name | uppercase}} </h1>
+            <a ng-href="#/detailed"><h1> {{theUserThing.name | uppercase}} </h1></a>
             <button class="btn btn-delete tooltip"
             ng-click="deleteProject(key)"><span>Delete this project</span></button>
           

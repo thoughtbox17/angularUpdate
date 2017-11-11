@@ -3,6 +3,7 @@ myApp.controller('ProjectsController',
  function($scope, $firebaseAuth, $firebaseArray,$routeParams, $rootScope) {
 
      var ref = firebase.database().ref();
+     var storageRef = firebase.storage().ref();
      var auth = $firebaseAuth();
 
      // putting project info into firebase
@@ -65,6 +66,7 @@ myApp.controller('ProjectsController',
                     bio: $scope.bio,
                     date: firebase.database.ServerValue.TIMESTAMP,
                     userId:authUser.uid
+
                 }).then(function(){
                     $scope.name ='',
                     $scope.category = '',
