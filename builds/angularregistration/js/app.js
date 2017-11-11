@@ -27,6 +27,10 @@ myApp.config(['$routeProvider', function($routeProvider) {
     templateUrl: 'views/myprojects.html',
     controller: 'ProjectsController'
   }).
+  when('/uploadfile', {
+    templateUrl: 'views/uploadfile.html',
+    controller: 'uploadfileController'
+  }).
   when('/colab/:uId/:pId', {
           templateUrl: 'views/colab.html',
           controller: 'ColabController'
