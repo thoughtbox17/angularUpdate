@@ -1,6 +1,6 @@
 myApp.controller('ProjectsController',
-['$scope','$firebaseAuth','$firebaseArray','$routeParams',
- function($scope, $firebaseAuth, $firebaseArray,$routeParams) {
+['$scope','$firebaseAuth','$firebaseArray','$routeParams','$rootScope',
+ function($scope, $firebaseAuth, $firebaseArray,$routeParams, $rootScope) {
 
      var ref = firebase.database().ref();
      var auth = $firebaseAuth();
@@ -8,12 +8,25 @@ myApp.controller('ProjectsController',
      // putting project info into firebase
      auth.$onAuthStateChanged(function(authUser){
          if(authUser){
+                var projectRef =ref.child('users').child(authUser.uid).child('projects');
                var projectlist  = ref.child('users').child('projectList');
                var projectInfo = $firebaseArray(projectlist);
+               var userprojectInfo = $firebaseArray(projectRef);
+
+
 
              $scope.theThings = projectInfo;
              $scope.whichItem = $routeParams.itemId
              $scope.artistOrder = "name";
+             $scope.theUserThings=userprojectInfo;
+
+             userprojectInfo.$loaded().then(function(data) {
+                $rootScope.howManyProjects = userprojectInfo.length;
+              }); // make sure meeting data is loaded
+      
+              userprojectInfo.$watch(function(data) {
+                $rootScope.howManyProjects = userprojectInfo.length;
+              });
 
 
              if($routeParams.itemId>0){
@@ -39,17 +52,31 @@ myApp.controller('ProjectsController',
                      bio: $scope.bio,
                      date: firebase.database.ServerValue.TIMESTAMP,
                      userId:authUser.uid
+                     
                  }).then(function(){
                      $scope.name ='',
                      $scope.category = '',
                        $scope.bio = ''
                  });
+
+                 userprojectInfo.$add({
+                    name: $scope.name,
+                    category: $scope.category,
+                    bio: $scope.bio,
+                    date: firebase.database.ServerValue.TIMESTAMP,
+                    userId:authUser.uid
+                }).then(function(){
+                    $scope.name ='',
+                    $scope.category = '',
+                      $scope.bio = ''
+                });
              }
 
 
 
-             $scope.deleteMetting = function(key){
+             $scope.deleteProject = function(key){
                  projectInfo.$remove(key);
+                 userprojectInfo.$remove(key);
              }
          }
      });// function(authUser)

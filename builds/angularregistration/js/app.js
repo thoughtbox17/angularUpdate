@@ -23,6 +23,10 @@ myApp.config(['$routeProvider', function($routeProvider) {
       templateUrl: 'views/search.html',
       controller: 'ProjectsController'
   }).
+  when('/myprojects', {
+    templateUrl: 'views/myprojects.html',
+    controller: 'ProjectsController'
+  }).
   when('/colab/:uId/:pId', {
           templateUrl: 'views/colab.html',
           controller: 'ColabController'
