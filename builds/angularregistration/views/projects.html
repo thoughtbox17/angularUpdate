@@ -17,10 +17,6 @@
           placeholder="Category"
           ng-model="category" ng-required="true">
       </div>
-      <div class="inputwrapper2">     
-      <input id="image" name="image" placeholder="Image" 
-      ngModel="image" type="file" >
-    </div>
 
       <div class="inputwrapper">
           <input type="text" name="bio"
@@ -28,8 +24,16 @@
           ng-model="bio" ng-required="true">
       </div>
 
+      
+
       <button type="submit" class="btn"
       ng-disable="myform.$invalid">+</button>
+  </form>
+
+
+  <form ng-submit="uploadFile(file)">
+    <input type="file" accept="txt" file-model="file" class="form-control">
+    <button type="submit" class="btn btn-primary">Upload File</button>
   </form>
   </div>
 <!--

@@ -1,10 +1,26 @@
-myApp.controller('ProjectsController',
-['$scope','$firebaseAuth','$firebaseArray','$routeParams','$rootScope',
- function($scope, $firebaseAuth, $firebaseArray,$routeParams, $rootScope) {
+myApp.directive('fileModel',['$parse', function ($parse){
+    return {
+   restrict: 'A',
+   link: function (scope, element, attrs) {
+     element.bind('change', function () {
+       $parse(attrs.fileModel)
+       .assign(scope, element[0].files[0])
+       scope.$apply();
+     })
+   }
+   }
+   }]);
 
-     var ref = firebase.database().ref();
+myApp.controller('ProjectsController',
+['$scope','$firebaseStorage','$firebaseAuth','$firebaseArray','$routeParams','$rootScope',
+ function($scope,$firebaseStorage, $firebaseAuth, $firebaseArray,$routeParams, $rootScope) {
+
+     
      var storageRef = firebase.storage().ref();
+     var filesRef = storageRef.child('files');
      var auth = $firebaseAuth();
+     var ref = firebase.database().ref();
+
 
      // putting project info into firebase
      auth.$onAuthStateChanged(function(authUser){
@@ -43,7 +59,24 @@ myApp.controller('ProjectsController',
              }
 
             
-
+             $scope.uploadFile = function(file) {
+                console.log("Let's upload a file!");
+                console.log($scope.file);
+                storageRef.child(file.name).put(file);
+                    storageRef.on('state_changed', function(snapshot) {
+                                var progress = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
+                
+                            }, function() {
+                                //handle error
+                            }, function() {
+                           //url of storage file 
+                                var downloadURL = storageRef.snapshot.downloadURL;
+                                console.log(downloadURL)
+                                //you will get url of snapshot
+                            });
+                     };
+                
+                 
 
 
               $scope.addProject = function(){
