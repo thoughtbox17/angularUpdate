@@ -1,7 +1,7 @@
 //var myApp = angular.module('myApp', ['firebase', 'angular.filter']);
 
 // define our app and dependencies (remember to include firebase!)
-angular
+/*angular
 .module("myApp", [
   "firebase"
 ])
@@ -26,10 +26,9 @@ UploadFileController.$inject = ["$firebaseStorage"];
 
 
 
-
 //////////////////////////////////////////////////////////////////////////
 
-/*myApp.controller("UploadFileController",['$scope','$firebaseArray',
+myApp.controller("UploadFileController",['$scope','$firebaseArray',
 function($scope, $firebaseArray) {
   
   var ref = firebase.storage().ref();
