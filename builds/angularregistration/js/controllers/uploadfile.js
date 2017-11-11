@@ -91,3 +91,18 @@ function($scope, $firebaseArray) {
   }
 
 }]);*/
+myApp.controller("UploadFileController",['$scope','$firebaseArray',
+function($scope, $firebaseArray) {
+var uploader=document.getElementById('uploader');
+var fileButton=document.getElementById('fileButton');
+
+//Listen for file
+fileButton.addEventListener('change',function(e) {
+  var file=e.target.files[0];
+
+  var storageRef= firebase.storage().ref('folder/'+file.name);
+
+  storageRef.put(file);
+
+});
+}]);
