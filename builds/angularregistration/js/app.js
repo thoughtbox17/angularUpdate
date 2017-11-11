@@ -29,7 +29,7 @@ myApp.config(['$routeProvider', function($routeProvider) {
   }).
   when('/uploadfile', {
     templateUrl: 'views/uploadfile.html',
-    controller: 'uploadfileController'
+    controller: 'UploadFileController'
   }).
   when('/colab/:uId/:pId', {
           templateUrl: 'views/colab.html',

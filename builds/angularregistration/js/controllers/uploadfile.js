@@ -1,10 +1,10 @@
-var img2fire = angular.module('myApp', ['firebase', 'angular.filter']);
+//var myApp = angular.module('myApp', ['firebase', 'angular.filter']);
 
-img2fire.controller("base64Ctrl", function($scope, $firebaseArray) {
+myApp.controller("UploadFileController",['$scope','$firebaseArray',
+function($scope, $firebaseArray) {
   
-  var ref = new Firebase("https://thought-box-a9211.firebaseio.com/");
-
-  var img = new Firebase("https://thought-box-a9211.firebaseio.com/images");
+  var ref = firebase.storage().ref();
+  var img = ref.child('images');
   $scope.imgs = $firebaseArray(img);
 
   var _validFileExtensions = [".jpg", ".jpeg", ".bmp", ".gif", ".png"];
@@ -62,4 +62,4 @@ img2fire.controller("base64Ctrl", function($scope, $firebaseArray) {
     }
   }
 
-});
+}]);

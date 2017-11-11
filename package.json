@@ -4,12 +4,16 @@
   "description": "An application for sharing ideas.",
   "repository": {
     "type": "git"
-
   },
   "author": "John Dunne",
   "devDependencies": {
     "gulp": "^3.9.1",
     "gulp-util": "^2.2.20",
     "gulp-webserver": "^0.8.1"
+  },
+  "dependencies": {
+    "angular": "^1.6.6",
+    "angularfire": "^2.3.0",
+    "angularfire2": "^5.0.0-rc.3"
   }
 }
