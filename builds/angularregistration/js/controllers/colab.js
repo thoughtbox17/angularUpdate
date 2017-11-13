@@ -9,7 +9,7 @@ function($scope,$rootScope,$location,$routeParams,$firebaseObject,$firebaseArray
      $scope.requester = $routeParams.pId;
      $scope.whichuser = $routeParams.uId;
 
-    ref = firebase.database().ref().child('users').child($scope.whichuser).child('colabReq');
+    ref = firebase.database().ref().child('users').child($scope.requester).child('colabReq');
 
     colabList = $firebaseArray(ref);
     $scope.colab = colabList;
@@ -19,10 +19,11 @@ function($scope,$rootScope,$location,$routeParams,$firebaseObject,$firebaseArray
             firstname: $scope.user.firstname,
             lastname: $scope.user.lastname,
             message: $scope.user.message,
+            userId:$scope.whichuser,
             date: firebase.database.ServerValue.TIMESTAMP
-
         }).then(function(){
-            $location.path('/MyColabs/'+$scope.whichuser+'/'+$scope.requester+'/colabList')
+
+            $location.path('/search')
         }); // add
    }
 

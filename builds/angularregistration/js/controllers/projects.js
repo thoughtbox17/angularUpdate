@@ -35,7 +35,7 @@ myApp.controller('ProjectsController',
                  $scope.prevItem =$scope.theThings.length-1;
              }
 
-             if($routeParams.itemId < $scope.theThings.length-1){
+             if($routeParams.itemId > $scope.theThings.length-1){
                  $scope.nextItem = Number($routeParams.itemId)+1;
              }else{
                  $scope.nextItem = 0;

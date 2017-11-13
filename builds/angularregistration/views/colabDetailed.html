@@ -1,0 +1,25 @@
+<section class="artistinfo">
+    <div class="artist cf" ng-model="theColabs">
+
+        <h1>{{theColabs[whichItems].firstname}} {{theColabs[whichItems].lastname}}</h1>
+
+        <div class="info">
+
+
+            <div class="bio">{{theColabs[whichItems].message}}</div>
+
+            </div>
+        </div>
+        <!-- <script>
+        $scope.userid = {{theThings[whichItem.userId]}}
+        var user = $scope.userid;
+        </script> -->
+        <a href="#/colab/{{currentUser.regUser}}">&laquo; Back to colab requests</a>
+        <a class="btn btn-checkin tooltip"
+        ng-href="#/workspace/{{currentUser.regUser}}/{{theColabs[whichItems].userId}}"><span>Accept</span></a>
+        <span class="text">Accept</span>
+
+
+        <a class="btn btn-delete tooltip"
+        ng-href="#/colab/{{currentUser.regUser}}/{{theThings[whichItem].userId}}"><span>Reject</span></a>
+        <span class="text">Reject</span>

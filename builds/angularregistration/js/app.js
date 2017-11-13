@@ -31,17 +31,25 @@ myApp.config(['$routeProvider', function($routeProvider) {
           templateUrl: 'views/colab.html',
           controller: 'ColabController'
     }).
+    when('/workspace/:uId/:pId', {
+      templateUrl: 'views/workspace.html',
+      controller: 'WorkspaceController'
+}).
     when('/profile', {
       templateUrl: 'views/profile.html',
       controller: 'ProfileController'
   }).
-  when('/MyColabs/:uId/:pId/colabList', {
+  when('/MyColabs/:uId', {
     templateUrl: 'views/MyColabs.html',
-    controller: 'ColabController'
-}).
+    controller: 'MyColabController'
+  }).
 when('/details/:itemId', {
       templateUrl: 'views/detailed.html',
       controller: 'ProjectsController'
+    }).
+    when('/colabDetailed/:itemId', {
+      templateUrl: 'views/colabDetailed.html',
+      controller: 'colabDetailedController'
     }).
     when('/projects', {
       templateUrl: 'views/projects.html',
