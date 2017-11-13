@@ -89,7 +89,7 @@ body  {
 
 .buttonscf{
     float:right;
-    
+
 }
 
 .card {
@@ -698,7 +698,7 @@ input.ng-valid.ng-touched {
     color: #EEE8D5;
 }
 
-.btn {
+/*.btn {
         display: inline-block;
         padding: 6px 12px;
         margin-bottom: 0;
@@ -730,7 +730,7 @@ input.ng-valid.ng-touched {
 
 .btn:hover {
         background: #09576D;
-}
+}*/
 
 .searchs label {
     display: none;
