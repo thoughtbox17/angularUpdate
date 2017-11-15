@@ -15,6 +15,16 @@ myApp.controller('ProfileController',
              $scope.yourProfile = profileInfo;
              console.log($scope.currentUser.$id);
 
+             let storageRef = firebase.storage().ref('folder/'+$scope.currentUser.$id);
+             console.log(storageRef);
+             storageRef.getDownloadURL().then((url) => {
+                //Set image url
+               $scope.imageUrl = url;
+               console.log(url);
+             }).catch((error) => {
+               console.log(error);
+             });
+
 
 
        }//$onAuthStateChanged
