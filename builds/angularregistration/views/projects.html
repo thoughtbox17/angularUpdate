@@ -3,7 +3,7 @@
   <div class="textintro">
 
       <h1>Upload Your Idea</h1>
-      <form class="formgroup addmeeting cf"
+      <form class="formgroup"
       name="myform"
       ng-submit="addProject();uploadFile(file)"
       novalidate>
@@ -13,7 +13,7 @@
           ng-model="name" ng-required="true">
       </div>
       <div class="inputwrapper2">
-        <select  type="text" ng-model="category" placeholder="Category" name="category" ng-required="true">
+        <select   type="text" ng-model="category" placeholder="Category" name="category" ng-required="true">
             <option value="food">food</option>
             <option value="fintech">fintech</option>
             <option value="health">health</option>
