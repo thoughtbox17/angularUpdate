@@ -13,9 +13,12 @@
           ng-model="name" ng-required="true">
       </div>
       <div class="inputwrapper2">
-          <input type="text" name="category"
-          placeholder="Category"
-          ng-model="category" ng-required="true">
+        <select  type="text" ng-model="category" placeholder="Category" name="category" ng-required="true">
+            <option value="food">food</option>
+            <option value="fintech">fintech</option>
+            <option value="health">health</option>
+            <option value="StartUp">StartUp</option>
+          </select>
       </div>
       <div class="inputwrapper2">     
         <input type="file" value ="upload"id ="fileButton"
@@ -43,4 +46,6 @@
    </div> -->
 
 </div><!-- meetings cf -->
+
+
 
