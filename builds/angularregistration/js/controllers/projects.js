@@ -93,7 +93,7 @@ myApp.controller('ProjectsController',
                 
                 var file=$scope.file;
             
-                var storageRef= firebase.storage().ref('folder/'+$scope.currentUser.$id);
+                var storageRef= firebase.storage().ref('images/'+$scope.currentUser.$id);
             
                 storageRef.put(file);
             
