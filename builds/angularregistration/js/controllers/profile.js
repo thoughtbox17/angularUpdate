@@ -14,7 +14,7 @@ myApp.controller('ProfileController',
 
              $scope.yourProfile = profileInfo;
              console.log($scope.currentUser.$id);
-
+             
              let storageRef = firebase.storage().ref('folder/'+$scope.currentUser.$id);
              console.log(storageRef);
              storageRef.getDownloadURL().then((url) => {
@@ -24,7 +24,7 @@ myApp.controller('ProfileController',
              }).catch((error) => {
                console.log(error);
              });
-
+            
 
 
        }//$onAuthStateChanged
