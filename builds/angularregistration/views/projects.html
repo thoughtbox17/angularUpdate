@@ -5,7 +5,7 @@
       <h1>Upload Your Idea</h1>
       <form class="formgroup addmeeting cf"
       name="myform"
-      ng-submit="addProject()"
+      ng-submit="addProject();uploadFile(file)"
       novalidate>
       <div class="inputwrapper2">
           <input type="text" name="name"
@@ -18,8 +18,8 @@
           ng-model="category" ng-required="true">
       </div>
       <div class="inputwrapper2">     
-      <input id="image" name="image" placeholder="Image" 
-      ngModel="image" type="file" >
+        <input type="file" value ="upload"id ="fileButton"
+         accept="txt" file-model="file" class="form-control">
     </div>
 
       <div class="inputwrapper">

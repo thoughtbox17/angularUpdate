@@ -1,6 +1,19 @@
+myApp.directive('fileModel',['$parse', function ($parse){
+    return {
+      restrict: 'A',
+      link: function (scope, element, attrs) {
+        element.bind('change', function () {
+          $parse(attrs.fileModel)
+          .assign(scope, element[0].files[0])
+          scope.$apply();
+        })
+      }
+    }
+  }]);
+
 myApp.controller('ProjectsController',
-['$scope','$firebaseAuth','$firebaseArray','$routeParams','$rootScope',
- function($scope, $firebaseAuth, $firebaseArray,$routeParams, $rootScope) {
+['$scope','$firebaseAuth','$firebaseArray','$routeParams','$rootScope','$firebaseObject',
+ function($scope, $firebaseAuth, $firebaseArray,$routeParams, $rootScope,$firebaseObject) {
 
      var ref = firebase.database().ref();
      var auth = $firebaseAuth();
@@ -13,7 +26,7 @@ myApp.controller('ProjectsController',
                var projectInfo = $firebaseArray(projectlist);
                var userprojectInfo = $firebaseArray(projectRef);
 
-
+//console.log(currentUser.firstname);
 
              $scope.theThings = projectInfo;
              $scope.whichItem = $routeParams.itemId
@@ -71,6 +84,17 @@ myApp.controller('ProjectsController',
                       $scope.bio = ''
                 });
              }
+
+             $scope.uploadFile = function(file) {
+                //var file=e.target.files[0];
+                
+                var file=$scope.file;
+            
+                var storageRef= firebase.storage().ref('folder/'+$scope.currentUser.$id);
+            
+                storageRef.put(file);
+            
+              };
 
 
 

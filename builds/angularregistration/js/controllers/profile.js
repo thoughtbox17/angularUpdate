@@ -1,6 +1,6 @@
 myApp.controller('ProfileController',
 ['$scope','$firebaseAuth','$firebaseArray','$firebaseObject',
- function($scope, $firebaseAuth, $firebaseArray) {
+ function($scope, $firebaseAuth, $firebaseArray,$firebaseObject) {
 
      var ref = firebase.database().ref();
      var auth = $firebaseAuth();
@@ -12,6 +12,7 @@ myApp.controller('ProfileController',
              var profileInfo = $firebaseObject(myProfile);
 
              $scope.yourProfile = profileInfo;
+             console.log($scope.currentUser.$id);
 
 
 
