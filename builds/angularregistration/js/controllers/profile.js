@@ -1,14 +1,15 @@
 myApp.controller('ProfileController',
-['$scope','$firebaseAuth','$firebaseArray','$firebaseObject','$firebaseObject',
- function($scope, $firebaseAuth, $firebaseArray,$firebaseObject,$firebaseObject) {
+['$scope','$firebaseAuth','$firebaseArray','$firebaseObject','$firebaseObject','$rootScope',
+ function($scope, $firebaseAuth, $firebaseArray,$firebaseObject,$firebaseObject,$rootScope) {
 
      var ref = firebase.database().ref();
      var auth = $firebaseAuth();
+
      //var profilepic = firebase.storage().ref('folder/'+$scope.currentUser.$id);
      
      auth.$onAuthStateChanged(function(authUser){
          if(authUser){
-
+            $scope.$apply(function () {
              var myProfile  = ref.child('users').child(authUser.uid);
              var profileInfo = $firebaseObject(myProfile);
 
@@ -20,7 +21,7 @@ myApp.controller('ProfileController',
              
              storageRef.getDownloadURL().then((url) => {
                 //Set image url
-               $scope.imageUrl = url;
+               $rootScope.imageUrl = url;
                console.log(url);
                console.log($scope.imageUrl);
              }).catch((error) => {
@@ -28,7 +29,7 @@ myApp.controller('ProfileController',
              });
              
             
-
+            });
 
        }//$onAuthStateChanged
    });// function(authUser)
