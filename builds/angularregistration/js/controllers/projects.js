@@ -25,8 +25,9 @@ myApp.controller('ProjectsController',
                var projectlist  = ref.child('users').child('projectList');
                var projectInfo = $firebaseArray(projectlist);
                var userprojectInfo = $firebaseArray(projectRef);
+               
+               
 
-//console.log(currentUser.firstname);
 
              $scope.theThings = projectInfo;
              $scope.whichItem = $routeParams.itemId
@@ -65,6 +66,7 @@ myApp.controller('ProjectsController',
                      bio: $scope.bio,
                      date: firebase.database.ServerValue.TIMESTAMP,
                      userId:authUser.uid
+                     //imagepath: firebase.storage().ref('folder/'+$scope.currentUser.$id)
                      
                  }).then(function(){
                      $scope.name ='',
@@ -78,6 +80,7 @@ myApp.controller('ProjectsController',
                     bio: $scope.bio,
                     date: firebase.database.ServerValue.TIMESTAMP,
                     userId:authUser.uid
+                    //imagepath: firebase.storage().ref('folder/'+$scope.currentUser.$id)
                 }).then(function(){
                     $scope.name ='',
                     $scope.category = '',

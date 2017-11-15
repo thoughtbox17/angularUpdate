@@ -4,6 +4,7 @@ myApp.controller('ProfileController',
 
      var ref = firebase.database().ref();
      var auth = $firebaseAuth();
+     //var profilepic = firebase.storage().ref('folder/'+$scope.currentUser.$id);
 
      auth.$onAuthStateChanged(function(authUser){
          if(authUser){
