@@ -12,8 +12,8 @@ myApp.directive('fileModel',['$parse', function ($parse){
   }]);
 
 myApp.controller('ProjectsController',
-['$scope','$firebaseAuth','$firebaseArray','$routeParams','$rootScope','$firebaseObject',
- function($scope, $firebaseAuth, $firebaseArray,$routeParams, $rootScope,$firebaseObject) {
+['$scope','$firebaseAuth','$firebaseArray','$routeParams','$rootScope','$firebaseObject','$location',
+ function($scope, $firebaseAuth, $firebaseArray,$routeParams, $rootScope,$firebaseObject,$location) {
 
      var ref = firebase.database().ref();
      var auth = $firebaseAuth();
@@ -105,6 +105,10 @@ myApp.controller('ProjectsController',
                  projectInfo.$remove(key);
                  userprojectInfo.$remove(key);
              }
+
+             $scope.changeView = function(view){
+                $location.path(view); // path not hash
+            }
          }
      });// function(authUser)
 }]);

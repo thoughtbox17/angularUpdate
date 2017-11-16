@@ -48,6 +48,10 @@ when('/details/:itemId', {
       templateUrl: 'views/detailed.html',
       controller: 'ProjectsController'
     }).
+    when('/uploadfile', {
+      templateUrl: 'views/uploadfile.html',
+      controller: 'ProjectsController'
+    }).
     when('/colabDetailed/:itemId', {
       templateUrl: 'views/colabDetailed.html',
       controller: 'colabDetailedController'
