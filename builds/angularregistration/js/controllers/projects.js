@@ -115,6 +115,33 @@ myApp.controller('ProjectsController',
             
               };
 
+              $scope.uploadCode = function(file) {
+                
+                
+                var file=$scope.file;
+            
+                var storageRef= firebase.storage().ref('code/'+$scope.currentUser.$id);
+            
+                storageRef.put(file);
+
+                storageRef.getDownloadURL().then((url) => {
+                    //Set image url
+                   
+                   console.log('URL: '+url);
+                 
+                    
+                   ref.child('users').child(authUser.uid).update({
+                    
+                    code:  url
+                   
+                  });
+                  //console.log('db updated');
+                 });
+
+                
+            
+              };
+
 
 
              $scope.deleteProject = function(key){
