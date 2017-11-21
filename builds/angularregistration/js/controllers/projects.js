@@ -89,13 +89,29 @@ myApp.controller('ProjectsController',
              }
 
              $scope.uploadFile = function(file) {
-                //var file=e.target.files[0];
+                
                 
                 var file=$scope.file;
             
                 var storageRef= firebase.storage().ref('images/'+$scope.currentUser.$id);
             
                 storageRef.put(file);
+
+                storageRef.getDownloadURL().then((url) => {
+                    //Set image url
+                   
+                   console.log(url);
+                 
+
+                   ref.child('users').child(authUser.uid).update({
+                    
+                    image:  url
+                   
+                  });
+                  //console.log('db updated');
+                 });
+
+                
             
               };
 

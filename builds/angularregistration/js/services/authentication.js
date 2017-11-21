@@ -4,9 +4,17 @@ myApp.factory('Authentication',['$rootScope','$location','$firebaseObject','$fir
         var ref = firebase.database().ref();
         var auth = $firebaseAuth();
         var myObject;
+        var defaultRef=firebase.storage().ref('images/default.png')
+
+        
+        
+        
 
         auth.$onAuthStateChanged(function(authUser){
             if(authUser){
+
+                
+
                 var userRef = ref.child('users').child(authUser.uid);
 
 
@@ -17,6 +25,17 @@ myApp.factory('Authentication',['$rootScope','$location','$firebaseObject','$fir
                 $rootScope.currentUser = '';
             }
         });
+
+        defaultRef.getDownloadURL().then((url) => {
+            //Set image url
+           $rootScope.imageUrl = url;
+           //console.log(url);
+           //console.log($scope.imageUrl);
+         }).catch((error) => {
+           //console.log(error);
+         });
+       
+        //console.log("storage REF : "+defaultRef);
 
         myObject = {
             login: function(user){
@@ -49,7 +68,8 @@ myApp.factory('Authentication',['$rootScope','$location','$firebaseObject','$fir
                         regUser: regUser.uid,
                         firstname: user.firstname,
                         lastname: user.lastname,
-                        email: user.email
+                        email: user.email,
+                        image: $rootScope.imageUrl
                     });
 
 

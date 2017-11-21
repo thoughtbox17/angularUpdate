@@ -16,23 +16,24 @@ myApp.controller('ProfileController',
              $scope.yourProfile = profileInfo;
              console.log("profile info:  " +$scope.currentUser.$id);
              
-             var storageRef = firebase.storage().ref('images/'+$scope.currentUser.$id);
+             var storageRef = ref.child('users').child(authUser.uid).child('image');
              console.log("storage REF : "+storageRef);
-             
-             storageRef.getDownloadURL().then((url) => {
+             $scope.imageUrl=storageRef;
+             /*storageRef.getDownloadURL().then((url) => {
                 //Set image url
                $rootScope.imageUrl = url;
                console.log(url);
                console.log($scope.imageUrl);
              }).catch((error) => {
                console.log(error);
-             });
+             });*/
              
             
             });
 
        }//$onAuthStateChanged
    });// function(authUser)
-
+   
+   
 
 }]);
