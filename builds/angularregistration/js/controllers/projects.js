@@ -66,7 +66,7 @@ myApp.controller('ProjectsController',
                      bio: $scope.bio,
                      date: firebase.database.ServerValue.TIMESTAMP,
                      userId:authUser.uid,
-                     workspace:$scope.name
+                     
                      
                  }).then(function(){
                      $scope.name ='',
@@ -80,7 +80,7 @@ myApp.controller('ProjectsController',
                     bio: $scope.bio,
                     date: firebase.database.ServerValue.TIMESTAMP,
                     userId:authUser.uid,
-                    workspace:$scope.name
+                   
                 }).then(function(){
                     $scope.name ='',
                     $scope.category = '',

@@ -40,9 +40,9 @@ when('/checkIns/:uId/:pId/checkInsList', {
   templateUrl: 'views/checkInslist.html',
   controller: 'CheckInsController'
 }).
-    when('/workspace/:uId/:pId', {
-      templateUrl: 'views/workspace.html',
-      controller: 'WorkspaceController'
+    when('/workspacelist/', {
+      templateUrl: 'views/workspacelist.html',
+      controller: 'CheckInsController'
 }).
     when('/profile', {
       templateUrl: 'views/profile.html',

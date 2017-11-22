@@ -70,7 +70,8 @@ myApp.factory('Authentication',['$rootScope','$location','$firebaseObject','$fir
                         lastname: user.lastname,
                         email: user.email,
                         image: $rootScope.imageUrl,
-                        code:''
+                        code:'',
+                        workspaces:''
 
                     });
 
