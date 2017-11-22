@@ -1,0 +1,19 @@
+<div class="card checkinslist">
+    <h1>Check-Ins</h1>
+    <ul class="userlist cf">
+        <li ng-repeat="checkIn in checkIns">
+            <div class="checkin">
+                <div class="info">
+                    <h2>
+                       {{checkIn.firstname}} {{checkIn.lastname}}
+                    </h2>
+                    <div class="date">
+                        {{checkIn.date | date : "MMM d,yy h:mm a"}}
+                    </div>
+
+                </div>
+            </div>
+        </li>
+
+    </ul>
+</div>
