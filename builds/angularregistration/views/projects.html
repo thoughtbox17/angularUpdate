@@ -5,7 +5,7 @@
       <h1>Upload Your Idea</h1>
       <form class="formgroup"
       name="myform"
-      ng-submit="addProject();uploadFile(file)"
+      ng-submit="addProject()"
       novalidate>
       <div class="inputwrapper2">
           <input type="text" name="name"
@@ -20,10 +20,10 @@
             <option value="StartUp">StartUp</option>
           </select>
       </div>
-      <div class="inputwrapper2">     
+     <!-- <div class="inputwrapper2">     
         <input type="file" value ="upload"id ="fileButton"
          accept="txt" file-model="file" class="form-control">
-    </div>
+    </div>-->
 
       <div class="inputwrapper">
           <input type="text" name="bio"

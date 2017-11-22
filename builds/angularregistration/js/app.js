@@ -32,6 +32,10 @@ myApp.config(['$routeProvider', function($routeProvider) {
           templateUrl: 'views/colab.html',
           controller: 'ColabController'
     }).
+    when('/checkIns/:uId/:pId', {
+      templateUrl: 'views/checkIns.html',
+      controller: 'CheckInsController'
+}).
     when('/workspace/:uId/:pId', {
       templateUrl: 'views/workspace.html',
       controller: 'WorkspaceController'

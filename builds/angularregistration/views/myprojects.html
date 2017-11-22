@@ -5,9 +5,12 @@
         <div class="theUserThing"   ng-repeat="(key,theUserThing) in theUserThings">
     
             <h1> {{theUserThing.name | uppercase}} </h1>
+            <h1>{{theUserThing.$id}} </h1>
             <button class="btn btn-delete tooltip"
             ng-click="deleteProject(key)"><span>Delete this project</span></button>
-          
+            <a class="btn btn-checkin tooltip"
+            ng-href="#/MyColabs/{{currentUser.regUser}}"><span>Go to WorkSpace</span></a>
+            
     
         </div>
     

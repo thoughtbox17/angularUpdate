@@ -65,8 +65,8 @@ myApp.controller('ProjectsController',
                      category: $scope.category,
                      bio: $scope.bio,
                      date: firebase.database.ServerValue.TIMESTAMP,
-                     userId:authUser.uid
-                     //imagepath: firebase.storage().ref('folder/'+$scope.currentUser.$id)
+                     userId:authUser.uid,
+                     workspace:$scope.name
                      
                  }).then(function(){
                      $scope.name ='',
@@ -79,8 +79,8 @@ myApp.controller('ProjectsController',
                     category: $scope.category,
                     bio: $scope.bio,
                     date: firebase.database.ServerValue.TIMESTAMP,
-                    userId:authUser.uid
-                    //imagepath: firebase.storage().ref('folder/'+$scope.currentUser.$id)
+                    userId:authUser.uid,
+                    workspace:$scope.name
                 }).then(function(){
                     $scope.name ='',
                     $scope.category = '',
@@ -141,6 +141,9 @@ myApp.controller('ProjectsController',
                 
             
               };
+
+
+              
 
 
 

@@ -15,17 +15,18 @@ myApp.controller('colabDetailedController',
              $scope.theColabs = colabInfo;
              $scope.whichItems = $routeParams.itemId
 
+             var projectInfo = $firebaseArray(projectlist);
+             var userprojectInfo = $firebaseArray(projectRef);
+             
+             
 
 
-
-
-
-
-
-
-
+           $scope.theThings = projectInfo;
+           $scope.whichItem = $routeParams.itemId
 
 
          }
-     });// function(authUser)
+     });
+  
+
 }]);
