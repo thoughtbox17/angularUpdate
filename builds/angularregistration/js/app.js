@@ -44,6 +44,10 @@ when('/MyColabs/:uId', {
   templateUrl: 'views/MyColabs.html',
   controller: 'MyColabController'
 }).
+when('/workspace/:uId/:pId', {
+        templateUrl: 'views/workspace.html',
+        controller: 'WorkspaceController'
+  }).
 when('/details/:itemId', {
       templateUrl: 'views/detailed.html',
       controller: 'ProjectsController'
