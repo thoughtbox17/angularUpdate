@@ -32,7 +32,7 @@ myApp.controller('CheckInsController',
    
 ///////////////////////////////////////////////////////////////////
 
-////////////////////////////////////////////////////////////////////
+/*
 projectlist=firebase.database().ref()
 .child('users')
 .child('projectList')
@@ -52,7 +52,7 @@ projectname = $firebaseObject(projectlist);
 $scope.pn=projectname.val();
 
 
-///////////////////////////////////////////////////////////////////   
+*///////////////////////////////////////////////////////////////////   
 
     
    
@@ -84,7 +84,7 @@ $scope.pn=projectname.val();
 
     userworkspace.$add({
         projectid: $scope.whichproject,
-        name:$scope.pn
+        //name:$scope.pn
 
     }).then(function(){
         $scope.pn.name='',
