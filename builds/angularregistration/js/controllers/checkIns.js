@@ -81,9 +81,14 @@ workspacename=firebase.database().ref()
 .child('projectList')
 .child($scope.whichproject);
 
+var authorId  = workspacename.child('userId');
+var authorIdRef = $firebaseObject(authorId);
+
+
+
 
 $scope.wsname=$firebaseArray(workspacename);
-console.log('workspace name: '+$scope.wsname.name);
+console.log('workspace name: '+$scope.wsname[0]);
 
 
 ////////////////////DB REF///////////////////////////////////////   
@@ -160,6 +165,9 @@ $scope.messages=messages;
 ////////////////////DELETE///////////////////////////////////////
 
 $scope.deleteCheckin=function(id,uid){
+    authorIdRef.$loaded().then(function() {
+      
+    
     if(authUser.uid==uid){
     console.log('id: '+id);
     var refDel=ref.child(id);
@@ -167,7 +175,13 @@ $scope.deleteCheckin=function(id,uid){
     record.$remove(id);
     $location.path('/#')
     }
+    else if(authUser.uid==authorIdRef.$value){
+        var refDel=ref.child(id);
+        var record=$firebaseObject(refDel);
+        record.$remove(id);
+    }
     
+});  
 }
 /////////////////POST//////////////////////////////////
 $scope.addPost =  function(){
