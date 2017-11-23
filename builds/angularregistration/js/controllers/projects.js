@@ -21,6 +21,22 @@ myApp.controller('ProjectsController',
      // putting project info into firebase
      auth.$onAuthStateChanged(function(authUser){
          if(authUser){
+
+            
+            var detailsRef=ref.child('users').child(authUser.uid);
+            var fn  = detailsRef.child('firstname');
+            var ln  = detailsRef.child('lastname');
+        
+            var fnInfo = $firebaseObject(fn);
+            var lnInfo = $firebaseObject(ln);
+            fnInfo.$loaded().then(function() {
+                
+                    
+                    console.log('user name: '+fnInfo.$value);
+                
+            });
+           
+
                 var projectRef =ref.child('users').child(authUser.uid).child('projects');
                var projectlist  = ref.child('users').child('projectList');
                var projectInfo = $firebaseArray(projectlist);
@@ -60,12 +76,17 @@ myApp.controller('ProjectsController',
 
 
               $scope.addProject = function(){
+                fnInfo.$loaded().then(function() {
+                    lnInfo.$loaded().then(function() {
+                        
                  projectInfo.$add({
                      name: $scope.name,
                      category: $scope.category,
                      bio: $scope.bio,
                      date: firebase.database.ServerValue.TIMESTAMP,
                      userId:authUser.uid,
+                     authorFN:fnInfo.$value,
+                     authorLN:lnInfo.$value,
                      
                      
                  }).then(function(){
@@ -73,6 +94,7 @@ myApp.controller('ProjectsController',
                      $scope.category = '',
                        $scope.bio = ''
                  });
+                });
 
                  userprojectInfo.$add({
                     name: $scope.name,
@@ -80,12 +102,18 @@ myApp.controller('ProjectsController',
                     bio: $scope.bio,
                     date: firebase.database.ServerValue.TIMESTAMP,
                     userId:authUser.uid,
+                    authorFN:fnInfo.$value,
+                    authorLN:lnInfo.$value,
+                    
                    
                 }).then(function(){
                     $scope.name ='',
                     $scope.category = '',
                       $scope.bio = ''
                 });
+                });
+            
+        
              }
 
              $scope.uploadFile = function(file) {

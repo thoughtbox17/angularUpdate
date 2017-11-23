@@ -1,9 +1,10 @@
 <div class="card checkinslist">
-    <h1>Project: {{wsname[4].$value}}</h1>
-    <h1>Creation date: {{wsname[3].$value | date : "MMM d,yy h:mm a"}}</h1>
-    <h1>Category: {{wsname[1].$value }}</h1>
-    <h1>About: {{wsname[0].$value}}</h1>
-    <h1>Author: {{yourProfile.firstname}}  {{yourProfile.lastname}}</h1>
+    <h1>Project: {{wsname[6].$value}}</h1>
+    <h1>Creation date: {{wsname[5].$value | date : "MMM d,yy h:mm a"}}</h1>
+    <h1>Category: {{wsname[3].$value }}</h1>
+    <h1>About: {{wsname[2].$value}}</h1>
+    <h1>Author: {{wsname[0].$value}} {{wsname[1].$value}}</h1>
+    
     <ul class="userlist cf">
         <li ng-repeat="checkIn in checkIns">
             <div class="checkin">
@@ -14,6 +15,11 @@
                 
                 </div>
                 <div class="info">
+                        <div class="card">
+                                
+                        <img width="200" height="200" class="thumbnail" ng-src="{{checkIn.userimage}}"></a>   
+                                
+                        </div>
                     <h2>
                        {{checkIn.firstname}} {{checkIn.lastname}}
                        
@@ -37,7 +43,7 @@
         <h2>{{work.message}}</h2>
 
         <div class="date" ng-model="thePerson">
-            {{work.date | date:"MMM d h:mm a"}} &nbsp; {{currentUser.firstname | uppercase}}
+            {{work.date | date:"MMM d h:mm a"}} &nbsp; {{work.sender | uppercase}}
         </div>
 
     </div>
