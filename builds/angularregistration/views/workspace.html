@@ -1,0 +1,35 @@
+<div class="card meetings cf">
+    <h1>Work Space</h1>
+    <div  ng-repeat="work in theWorkspace">
+
+        <div class="card meetings cf">
+        <h2>{{work.message}}</h2>
+
+        <div class="date" ng-model="thePerson">
+            {{work.date | date:"MMM d h:mm a"}} &nbsp; {{currentUser.firstname | uppercase}}
+        </div>
+
+</div>
+
+        </div>
+
+        <form name="myform"
+          ng-submit="addPost()"
+          novalidate>
+
+
+
+          <fieldset>
+            <input type="text" name="myPost" placeholder="post..."
+            ng-model="user.myPost" ng-required="false">
+            <p class="error validationerror"
+            ng-show="myform.myPost.$invalid && myform.myPost.$touched">
+            Post required</p>
+          </fieldset>
+
+          <button type="submit" class="btn"
+          ng-disabled="myform.$invalid">post</button>
+        </form>
+
+
+</div>
