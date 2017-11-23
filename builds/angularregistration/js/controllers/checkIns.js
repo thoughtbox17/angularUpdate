@@ -7,8 +7,14 @@ myApp.controller('CheckInsController',
     var auth = $firebaseAuth();
     auth.$onAuthStateChanged(function(authUser){
         if(authUser){
+            var ref = firebase.database().ref();
+
+            var myProfile  = ref.child('users').child(authUser.uid);
+            var profileInfo = $firebaseObject(myProfile);
+
+            $scope.yourProfile = profileInfo;
     
-    var ref,userws,userworkspace, checkInsList,projectlist;
+    var userws,userworkspace, checkInsList,projectlist,workspacename,message;
     
     
     $rootScope.whichproject=$routeParams.pId;
@@ -33,12 +39,16 @@ myApp.controller('CheckInsController',
    
 ///////////////////////////////////////////////////////////////////
 
-/////////////////////////////////////////////////////////////////
+////////////////DB REF////////////////////////////////////////
 projectlist=firebase.database().ref()
 .child('users')
 .child('projectList')
 .child($scope.whichproject)
 .child('name');
+
+
+//console.log('workspace name: '+$scope.wsname.val());
+
 
 var name=$firebaseObject(projectlist);
 name.$loaded().then(function() {
@@ -48,22 +58,48 @@ name.$loaded().then(function() {
     
 });
 
+/////////////////////////////////////////////////////////////////// 
 
 
+//////////////////DB REF///////////////////////////////////////
+workspacename=firebase.database().ref()
+.child('users')
+.child('projectList')
+.child($scope.whichproject);
 
 
+$scope.wsname=$firebaseArray(workspacename);
+console.log('workspace name: '+$scope.wsname.name);
 
-///////////////////////////////////////////////////////////////////   
+
+////////////////////DB REF///////////////////////////////////////   
 
      ref = firebase.database().ref()
     .child('users')
     .child('projectList')
     .child($scope.whichproject)
-    .child('checkIns');
+    .child('checkIns')
+    .child('users');
 
     checkInsList=$firebaseArray(ref);
     $scope.checkIns=checkInsList;
 ///////////////////////////////////////////////////////////////////
+
+////////////////////DB REF///////////////////////////////////////   
+
+message = firebase.database().ref()
+.child('users')
+.child('projectList')
+.child($scope.whichproject)
+.child('checkIns')
+.child('messages');
+
+var messages=$firebaseArray(message);
+$scope.messages=messages;
+///////////////////////////////////////////////////////////////////
+
+
+///////////////// FUNCTIONS ///////////////////////////////////////
     $scope.addCheckin=function(){
     $firebaseArray(ref).$add({
         firstname: $scope.user.firstname,
@@ -102,6 +138,7 @@ name.$loaded().then(function() {
 
     //console.log('working');
 }
+////////////////////DELETE///////////////////////////////////////
 
 $scope.deleteCheckin=function(id,uid){
     if(authUser.uid==uid){
@@ -112,8 +149,21 @@ $scope.deleteCheckin=function(id,uid){
     $location.path('/#')
     }
 }
+/////////////////POST//////////////////////////////////
+$scope.addPost =  function(){
+    
+    messages.$add({
+        message:$scope.user.myPost,
+        date: firebase.database.ServerValue.TIMESTAMP
 
 
+    }).then(function(){
+    
+    $scope.user.myPost=''
+
+    });
+    };
+//////////////////////////////////////////////////////////////////////////
 
 }
 });

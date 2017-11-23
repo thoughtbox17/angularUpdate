@@ -1,17 +1,21 @@
 <div class="card checkinslist">
-    <h1>{{pn.name}}</h1>
+    <h1>Project: {{wsname[4].$value}}</h1>
+    <h1>Creation date: {{wsname[3].$value | date : "MMM d,yy h:mm a"}}</h1>
+    <h1>Category: {{wsname[1].$value }}</h1>
+    <h1>About: {{wsname[0].$value}}</h1>
+    <h1>Author: {{yourProfile.firstname}}  {{yourProfile.lastname}}</h1>
     <ul class="userlist cf">
         <li ng-repeat="checkIn in checkIns">
             <div class="checkin">
                 <div class="buttons">
 
-                        <button class="btn btn-delete tooltip"
-                        ng-click="deleteCheckin(checkIn.$id,checkIn.uid)"><span>Delete this person</span></button>
+                    <button class="btn btn-delete tooltip"
+                    ng-click="deleteCheckin(checkIn.$id,checkIn.uid)"><span>Leave this WorkSpace</span></button>
                 
                 </div>
                 <div class="info">
                     <h2>
-                       {{checkIn.firstname}} {{checkIn.lastname}} {{checkIn.uid}}
+                       {{checkIn.firstname}} {{checkIn.lastname}}
                        
                     </h2>
                     <div class="date">
@@ -24,3 +28,40 @@
 
     </ul>
 </div>
+
+<div class="card meetings cf">
+    <h1>Posting</h1>
+    <div  ng-repeat="work in messages">
+
+        <div class="card meetings cf">
+        <h2>{{work.message}}</h2>
+
+        <div class="date" ng-model="thePerson">
+            {{work.date | date:"MMM d h:mm a"}} &nbsp; {{currentUser.firstname | uppercase}}
+        </div>
+
+    </div>
+</div>
+
+
+<form name="myform"
+    ng-submit="addPost()"
+    novalidate>
+
+
+
+    <fieldset>
+    <input type="text" name="myPost" placeholder="post..."
+    ng-model="user.myPost" ng-required="false">
+    <p class="error validationerror"
+    ng-show="myform.myPost.$invalid && myform.myPost.$touched">
+    Post required</p>
+    </fieldset>
+
+    <button type="submit" class="btn"
+    ng-disabled="myform.$invalid">post</button>
+</form>
+</div>
+
+
+
