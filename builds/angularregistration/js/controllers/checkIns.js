@@ -11,9 +11,10 @@ myApp.controller('CheckInsController',
     var ref,userws,userworkspace, checkInsList,projectlist;
     
     
-    $scope.whichproject=$routeParams.pId;
+    $rootScope.whichproject=$routeParams.pId;
+    console.log('scope which project: '+$scope.whichproject);
     $scope.whichuser=$routeParams.uId;
-    //console.log($scope.whichproject);
+    
 
 ///go to userworkspace list//////////////////////////////////////////
     userws=firebase.database().ref()
@@ -32,30 +33,27 @@ myApp.controller('CheckInsController',
    
 ///////////////////////////////////////////////////////////////////
 
-/*
+/////////////////////////////////////////////////////////////////
 projectlist=firebase.database().ref()
 .child('users')
 .child('projectList')
 .child($scope.whichproject)
-.child('name').then(function(snapshot) {
+.child('name');
+
+var name=$firebaseObject(projectlist);
+name.$loaded().then(function() {
     
-        var value = snapshot.val();
-        console.log(value.name);
+        
+        //console.log(name.$value);
     
 });
 
 
 
-projectname = $firebaseObject(projectlist);
 
 
-$scope.pn=projectname.val();
 
-
-*///////////////////////////////////////////////////////////////////   
-
-    
-   
+///////////////////////////////////////////////////////////////////   
 
      ref = firebase.database().ref()
     .child('users')
@@ -65,13 +63,14 @@ $scope.pn=projectname.val();
 
     checkInsList=$firebaseArray(ref);
     $scope.checkIns=checkInsList;
-
+///////////////////////////////////////////////////////////////////
     $scope.addCheckin=function(){
     $firebaseArray(ref).$add({
         firstname: $scope.user.firstname,
         lastname: $scope.user.lastname,
         email: $scope.user.email,
-        date:firebase.database.ServerValue.TIMESTAMP
+        date:firebase.database.ServerValue.TIMESTAMP,
+        uid:$scope.whichuser,
 
     }).then(function(){
         $scope.user.firstname='',
@@ -81,10 +80,15 @@ $scope.pn=projectname.val();
         $location.path('/checkIns/'+$scope.whichuser + '/' + $scope.whichproject + '/checkInsList');
     });
 
-
+    name.$loaded().then(function() {
+        
+            
+            //console.log(name.$value);
+        
+   
     userworkspace.$add({
         projectid: $scope.whichproject,
-        //name:$scope.pn
+        name:name.$value
 
     }).then(function(){
         $scope.pn.name='',
@@ -93,17 +97,23 @@ $scope.pn=projectname.val();
 
         
     });
+});
     //console.log('working')
 
     //console.log('working');
 }
 
-$scope.deleteCheckin=function(id){
-    //console.log(id);
+$scope.deleteCheckin=function(id,uid){
+    if(authUser.uid==uid){
+    console.log('id: '+id);
     var refDel=ref.child(id);
     var record=$firebaseObject(refDel);
     record.$remove(id);
+    $location.path('/#')
+    }
 }
+
+
 
 }
 });

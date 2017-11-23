@@ -42,7 +42,7 @@ when('/checkIns/:uId/:pId/checkInsList', {
 }).
     when('/workspacelist/', {
       templateUrl: 'views/workspacelist.html',
-      controller: 'CheckInsController'
+      controller: 'WorkSpaceController'
 }).
     when('/profile', {
       templateUrl: 'views/profile.html',

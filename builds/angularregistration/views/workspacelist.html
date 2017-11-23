@@ -2,15 +2,16 @@
 <div class="card meetings cf">
         <div class="list" >
                 
-            <div class="myworkspaces"   ng-repeat="myworkspace in myworkspaces">
+            <div class="myworkspaces"   ng-repeat="myworkspace in whichworkspace">
         
-                <h1> {{myworkspace.name | uppercase}} </h1>
+                <h1> {{myworkspace.name | uppercase}} {{myworkspace.$id}} </h1>
                 
                
-                <!--<button class="btn btn-delete tooltip"
-                ng-click="deleteProject(key)"><span>Delete this project</span></button>
+                <button class="btn btn-delete tooltip"
+                ng-click="deleteWorkSpaceLink(myworkspace.$id)"><span>Delete this WorkSpace Link</span></button>
+
                 <a class="btn btn-checkin tooltip"
-                ng-href="#/checkIns/{{currentUser.regUser}}/{{theThings[key].$id}}/checkInsList"><span>Go to WorkSpace</span></a>-->
+                ng-href="#/checkIns/{{currentUser.regUser}}/{{myworkspace.projectid}}/checkInsList"><span>Go to WorkSpace</span></a>
                 
         
             </div>
@@ -18,4 +19,4 @@
            
         </div>    
     </div>
-    
+</div>   
