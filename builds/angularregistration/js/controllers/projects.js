@@ -21,8 +21,9 @@ myApp.controller('ProjectsController',
      // putting project info into firebase
      auth.$onAuthStateChanged(function(authUser){
          if(authUser){
-
             
+
+
             var detailsRef=ref.child('users').child(authUser.uid);
             var fn  = detailsRef.child('firstname');
             var ln  = detailsRef.child('lastname');
@@ -32,7 +33,7 @@ myApp.controller('ProjectsController',
             fnInfo.$loaded().then(function() {
                 
                     
-                    console.log('user name: '+fnInfo.$value);
+                    //console.log('user name: '+fnInfo.$value);
                 
             });
            
@@ -128,20 +129,25 @@ myApp.controller('ProjectsController',
                 storageRef.getDownloadURL().then((url) => {
                     //Set image url
                    
-                   console.log(url);
+                   console.log('first function');
                  
+                    //storeDBRef();
+                   
+                  //console.log('db updated');
+                 });
 
-                   ref.child('users').child(authUser.uid).update({
+              };
+
+              /*var storeDBRef = function(){
+                var url= firebase.storage().ref('images/'+$scope.currentUser.$id);
+                console.log(url);
+                ref.child('users').child(authUser.uid).update({
                     
                     image:  url
                    
                   });
-                  //console.log('db updated');
-                 });
-
-                
+            }*/
             
-              };
 
               $scope.uploadCode = function(file) {
                 
