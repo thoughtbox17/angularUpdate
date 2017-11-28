@@ -22,11 +22,41 @@
       ng-show="myform.lastname.$invalid && myform.lastname.$touched">
       Last name required</p>
 
+      <input type="text" name="education" placeholder="Education"
+      ng-model="user.education" ng-required="true">
+      <p class="error validationerror"
+      ng-show="myform.education.$invalid && myform.education.$touched">
+      Must be a valid email</p>
+
+      <input type="text" name="expierence" placeholder="Expierence"
+      ng-model="user.expierence">
+
+      <h2>Please enter your Top 5 skills</h2>
+      <input type="text" name="skills1" placeholder="Skills"
+      ng-model="user.skills1">
+
+      <input type="text" name="skills2" placeholder="Skills"
+      ng-model="user.skills2">
+
+      <input type="text" name="skills3" placeholder="Skills"
+      ng-model="user.skills3">
+
+      <input type="text" name="skills4" placeholder="Skills"
+      ng-model="user.skills4">
+
+      <input type="text" name="skills5" placeholder="Skills"
+      ng-model="user.skills5">
+
+      <input type="text" name="describe" placeholder="Say a bit about yourself"
+      ng-model="user.describe">
+
+
       <input type="email" name="email" placeholder="Email"
       ng-model="user.email" ng-required="true">
       <p class="error validationerror"
       ng-show="myform.email.$invalid && myform.email.$touched">
       Must be a valid email</p>
+      
 
       <input type="password" name="password" placeholder="Password"
       ng-model="user.password" ng-required="true">

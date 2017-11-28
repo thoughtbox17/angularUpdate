@@ -1,64 +1,94 @@
 myApp.factory('Authentication',['$rootScope','$location','$firebaseObject','$firebaseAuth',
-    function($rootScope, $location, $firebaseObject, $firebaseAuth){
+function($rootScope, $location, $firebaseObject, $firebaseAuth){
 
-        var ref = firebase.database().ref();
-        var auth = $firebaseAuth();
-        var myObject;
+    var ref = firebase.database().ref();
+    var auth = $firebaseAuth();
+    var myObject;
+    var defaultRef=firebase.storage().ref('images/default.png')
 
-        auth.$onAuthStateChanged(function(authUser){
-            if(authUser){
-                var userRef = ref.child('users').child(authUser.uid);
+    
+    
+    
 
+    auth.$onAuthStateChanged(function(authUser){
+        if(authUser){
 
-                var userObj = $firebaseObject(userRef);
+            
 
-                $rootScope.currentUser = userObj;
-            }else{
-                $rootScope.currentUser = '';
-            }
-        });
-
-        myObject = {
-            login: function(user){
-                auth.$signInWithEmailAndPassword(
-                    user.email,
-                    user.password
-                ).then(function(user){
-                    $location.path('/profile')
-                }).catch(function(error){
-                    $rootScope.message = error.message;
-                })
-            },//login
-
-            logout: function(){
-                return auth.$signOut();
-            },// logout
-
-            requireAuth: function(){
-                return auth.$requireSignIn();
-            },
-            register: function(user){
-                auth.$createUserWithEmailAndPassword(
-                    user.email,
-                    user.password
-
-                ).then(function(regUser){
-                    var regRef = ref.child('users')
-                    .child(regUser.uid).set({
-                        date: firebase.database.ServerValue.TIMESTAMP,
-                        regUser: regUser.uid,
-                        firstname: user.firstname,
-                        lastname: user.lastname,
-                        email: user.email
-                    });
+            var userRef = ref.child('users').child(authUser.uid);
 
 
-                    myObject.login(user);
-                }).catch(function(error){
-                    $rootScope.message = error.message;
-                })
-            }// register
-        }// return
+            var userObj = $firebaseObject(userRef);
 
-        return myObject;
-    }]);// factory
+            $rootScope.currentUser = userObj;
+        }else{
+            $rootScope.currentUser = '';
+        }
+    });
+
+    defaultRef.getDownloadURL().then((url) => {
+        //Set image url
+       $rootScope.imageUrl = url;
+       //console.log(url);
+       //console.log($scope.imageUrl);
+     }).catch((error) => {
+       //console.log(error);
+     });
+   
+    //console.log("storage REF : "+defaultRef);
+
+    myObject = {
+        login: function(user){
+            auth.$signInWithEmailAndPassword(
+                user.email,
+                user.password
+            ).then(function(user){
+                $location.path('/profile')
+            }).catch(function(error){
+                $rootScope.message = error.message;
+            })
+        },//login
+
+        logout: function(){
+            return auth.$signOut();
+        },// logout
+
+        requireAuth: function(){
+            return auth.$requireSignIn();
+        },
+        register: function(user){
+            auth.$createUserWithEmailAndPassword(
+                user.email,
+                user.password
+
+            ).then(function(regUser){
+                var regRef = ref.child('users')
+                .child(regUser.uid).set({
+                    date: firebase.database.ServerValue.TIMESTAMP,
+                    regUser: regUser.uid,
+                    firstname: user.firstname,
+                    lastname: user.lastname,
+                    email: user.email,
+                    image: $rootScope.imageUrl,
+                    code:'',
+                    education: user.education,
+                    expierence: user.expierence,
+                    skills1: user.skills1,
+                    skills2: user.skills2,
+                    skills3: user.skills3,
+                    skills4: user.skills4,
+                    skills5: user.skills5,
+                    describe: user.describe
+
+                });
+
+
+                myObject.login(user);
+            }).catch(function(error){
+                $rootScope.message = error.message;
+            })
+        }// register
+    }// return
+
+    return myObject;
+}]);// factory
