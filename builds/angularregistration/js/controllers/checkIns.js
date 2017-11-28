@@ -33,7 +33,7 @@ myApp.controller('CheckInsController',
         
         
             $rootScope.whichproject=$routeParams.pId;
-            console.log('scope which project: '+$scope.whichproject);
+            //console.log('scope which project: '+$scope.whichproject);
             $scope.whichuser=$routeParams.uId;
     
 
@@ -93,14 +93,14 @@ console.log('workspace name: '+$scope.wsname[0]);
 
 ////////////////////DB REF///////////////////////////////////////   
 
-    ref = firebase.database().ref()
+    Uref = firebase.database().ref()
     .child('users')
     .child('projectList')
     .child($scope.whichproject)
     .child('checkIns')
     .child('users');
 
-    checkInsList=$firebaseArray(ref);
+    checkInsList=$firebaseArray(Uref);
     $scope.checkIns=checkInsList;
 ///////////////////////////////////////////////////////////////////
 
@@ -122,13 +122,17 @@ $scope.messages=messages;
 
 
     $scope.addCheckin=function(){
+        
         imInfo.$loaded().then(function() {
-    $firebaseArray(ref).$add({
+
+        var ws = Uref;
+        
+
+        ws.child($scope.whichuser).set({
         firstname: $scope.user.firstname,
         lastname: $scope.user.lastname,
         email: $scope.user.email,
         date:firebase.database.ServerValue.TIMESTAMP,
-        uid:$scope.whichuser,
         userimage:imInfo.$value,
 
     }).then(function(){
@@ -145,8 +149,8 @@ $scope.messages=messages;
             
             //console.log(name.$value);
         
-   
-    userworkspace.$add({
+    
+    ref.child('users').child($scope.whichuser).child('workspaces').child($scope.whichproject).set({
         projectid: $scope.whichproject,
         name:name.$value
 
@@ -164,22 +168,27 @@ $scope.messages=messages;
 }
 ////////////////////DELETE///////////////////////////////////////
 
-$scope.deleteCheckin=function(id,uid){
+$scope.deleteCheckin=function(uid){
+    var UrefDel=ref.child('users').child(uid).child('workspaces');
+    var refDel=Uref.child(uid);
+    var record=$firebaseObject(refDel);
+    var Urecord=$firebaseObject(UrefDel);
+    
     authorIdRef.$loaded().then(function() {
       
     
     if(authUser.uid==uid){
-    console.log('id: '+id);
-    var refDel=ref.child(id);
-    var record=$firebaseObject(refDel);
-    record.$remove(id);
+
+    record.$remove(uid);
+    Urecord.$remove(uid);
     $location.path('/#')
     }
     else if(authUser.uid==authorIdRef.$value){
-        var refDel=ref.child(id);
-        var record=$firebaseObject(refDel);
-        record.$remove(id);
+        record.$remove(uid);
+        Urecord.$remove(uid);
+        
     }
+    else{}
     
 });  
 }

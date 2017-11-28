@@ -42,6 +42,8 @@ myApp.controller('ProjectsController',
                var projectlist  = ref.child('users').child('projectList');
                var projectInfo = $firebaseArray(projectlist);
                var userprojectInfo = $firebaseArray(projectRef);
+               var projectInfoOB = $firebaseObject(projectlist);
+               var userprojectInfoOB = $firebaseObject(projectRef);
                
                
 
@@ -76,11 +78,13 @@ myApp.controller('ProjectsController',
 
 
 
-              $scope.addProject = function(){
+             $scope.addProject = function(){
+                var rand=Math.floor((Math.random() * 300) + 1);
                 fnInfo.$loaded().then(function() {
                     lnInfo.$loaded().then(function() {
-                        
-                 projectInfo.$add({
+                    
+                    var projects = ref.child("users").child('projectList');     
+                    projects.child(authUser.uid +'-' +rand).set({
                      name: $scope.name,
                      category: $scope.category,
                      bio: $scope.bio,
@@ -88,16 +92,18 @@ myApp.controller('ProjectsController',
                      userId:authUser.uid,
                      authorFN:fnInfo.$value,
                      authorLN:lnInfo.$value,
-                     
-                     
+                    
                  }).then(function(){
                      $scope.name ='',
                      $scope.category = '',
                        $scope.bio = ''
                  });
-                });
 
-                 userprojectInfo.$add({
+   
+                
+                 var myprojects = ref.child("users").child(authUser.uid).child('projects');
+                 
+                 myprojects.child(authUser.uid +'-' +rand).set({
                     name: $scope.name,
                     category: $scope.category,
                     bio: $scope.bio,
@@ -105,6 +111,7 @@ myApp.controller('ProjectsController',
                     userId:authUser.uid,
                     authorFN:fnInfo.$value,
                     authorLN:lnInfo.$value,
+                   
                     
                    
                 }).then(function(){
@@ -113,6 +120,8 @@ myApp.controller('ProjectsController',
                       $scope.bio = ''
                 });
                 });
+            });
+    
             
         
              }
@@ -181,9 +190,9 @@ myApp.controller('ProjectsController',
 
 
 
-             $scope.deleteProject = function(key){
-                 projectInfo.$remove(key);
-                 userprojectInfo.$remove(key);
+             $scope.deleteProject = function(id){
+                 projectInfoOB.$remove(id);
+                 userprojectInfoOB.$remove(id);
              }
 
              $scope.changeView = function(view){

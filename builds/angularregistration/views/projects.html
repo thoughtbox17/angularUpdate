@@ -8,18 +8,20 @@
       ng-submit="addProject()"
       novalidate>
       <div class="inputwrapper2">
+          <p>Choose a Category for your Project</p>
+            <select   type="text" ng-model="category" placeholder="Category" name="category" ng-required="true" style="width:750px">
+                <option value="food">food</option>
+                <option value="fintech">fintech</option>
+                <option value="health">health</option>
+                <option value="StartUp">StartUp</option>
+              </select>
+    </div>
+      <div class="inputwrapper2">
           <input type="text" name="name"
           placeholder="Name"
           ng-model="name" ng-required="true">
       </div>
-      <div class="inputwrapper2">
-        <select   type="text" ng-model="category" placeholder="Category" name="category" ng-required="true">
-            <option value="food">food</option>
-            <option value="fintech">fintech</option>
-            <option value="health">health</option>
-            <option value="StartUp">StartUp</option>
-          </select>
-      </div>
+      
      <!-- <div class="inputwrapper2">     
         <input type="file" value ="upload"id ="fileButton"
          accept="txt" file-model="file" class="form-control">
