@@ -191,8 +191,8 @@ myApp.controller('ProjectsController',
 
 
              $scope.deleteProject = function(id){
-                 projectInfoOB.$remove(id);
-                 userprojectInfoOB.$remove(id);
+                 projectInfoOB.child(id).$remove();
+                 userprojectInfoOB.child(id).$remove();
              }
 
              $scope.changeView = function(view){

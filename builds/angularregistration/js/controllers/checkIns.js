@@ -168,24 +168,25 @@ $scope.messages=messages;
 }
 ////////////////////DELETE///////////////////////////////////////
 
-$scope.deleteCheckin=function(uid){
+$scope.deleteCheckin=function(uid,pid){
     var UrefDel=ref.child('users').child(uid).child('workspaces');
     var refDel=Uref.child(uid);
-    var record=$firebaseObject(refDel);
-    var Urecord=$firebaseObject(UrefDel);
+    console.log(uid);
+    //var record=$firebaseObject(refDel);
+    //var Urecord=$firebaseObject(UrefDel);
     
     authorIdRef.$loaded().then(function() {
       
     
     if(authUser.uid==uid){
 
-    record.$remove(uid);
-    Urecord.$remove(uid);
+    UrefDel.child(pid).remove();
+    refDel.child(pid).remove();
     $location.path('/#')
     }
     else if(authUser.uid==authorIdRef.$value){
-        record.$remove(uid);
-        Urecord.$remove(uid);
+        UrefDel.child(pid).remove();
+        refDel.child(pid).remove();
         
     }
     else{}
