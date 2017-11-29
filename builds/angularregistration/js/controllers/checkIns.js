@@ -170,8 +170,16 @@ $scope.messages=messages;
 
 $scope.deleteCheckin=function(uid,pid){
     var UrefDel=ref.child('users').child(uid).child('workspaces');
-    var refDel=Uref.child(uid);
-    console.log(uid);
+    var refDel=firebase.database().ref()
+    .child('users')
+    .child('projectList')
+    .child(pid)
+    .child('checkIns')
+    .child('users');
+
+    console.log('uid:'+uid);
+    console.log('pid: '+pid);
+    //console.log(authorIdRef.$value);
     //var record=$firebaseObject(refDel);
     //var Urecord=$firebaseObject(UrefDel);
     
@@ -181,12 +189,12 @@ $scope.deleteCheckin=function(uid,pid){
     if(authUser.uid==uid){
 
     UrefDel.child(pid).remove();
-    refDel.child(pid).remove();
+    refDel.child(uid).remove();
     $location.path('/#')
     }
     else if(authUser.uid==authorIdRef.$value){
         UrefDel.child(pid).remove();
-        refDel.child(pid).remove();
+        refDel.child(uid).remove();
         
     }
     else{}
