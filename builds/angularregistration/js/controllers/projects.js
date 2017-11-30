@@ -192,8 +192,12 @@ myApp.controller('ProjectsController',
 
              $scope.deleteProject = function(id){
                  console.log(id);
-                 projectInfoOB.$remove(id);
-                 userprojectInfoOB.$remove(id);
+                 var refDel=projectlist.child(id);
+                 var UrefDel=projectRef.child(id);
+                 var record=$firebaseObject(refDel);
+                 var Urecord=$firebaseObject(UrefDel);
+                 record.$remove(id);
+                 Urecord.$remove(id);
                 }
 
              $scope.changeView = function(view){

@@ -190,7 +190,7 @@ $scope.deleteCheckin=function(uid,pid){
 
     UrefDel.child(pid).remove();
     refDel.child(uid).remove();
-    $location.path('/#')
+    $location.path('/profile')
     }
     else if(authUser.uid==authorIdRef.$value){
         UrefDel.child(pid).remove();
