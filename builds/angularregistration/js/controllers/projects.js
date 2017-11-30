@@ -191,13 +191,14 @@ myApp.controller('ProjectsController',
 
 
              $scope.deleteProject = function(id){
-                 projectInfoOB.child(id).$remove();
-                 userprojectInfoOB.child(id).$remove();
-             }
+                 console.log(id);
+                 projectInfoOB.$remove(id);
+                 userprojectInfoOB.$remove(id);
+                }
 
              $scope.changeView = function(view){
                 $location.path(view); // path not hash
             }
          }
-     });// function(authUser)
+     });
 }]);
