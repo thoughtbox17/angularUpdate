@@ -1,0 +1,20 @@
+<div class="card checkinslist">
+    <h1>Colab Requests</h1>
+    <p>Here's a list of all your latest requests</p>
+    <ul class="userlist cf">
+        <li ng-repeat="colaber in colabs">
+          <a href="#/colabDetailed/{{colabs.indexOf(colaber)}}">
+            <div class="checkin">
+                <div class="info">
+                    <h2>{{colaber.firstname}} {{colaber.lastname}}</h2>
+                    <h2>{{colaber.message}}</h2>
+                    <div class="date">
+                        {{colaber.date | date:"MMM d,yy h:mm a"}}
+                    </div>
+                </div>
+            </div>
+
+        </li>
+    </ul>
+</div>
+

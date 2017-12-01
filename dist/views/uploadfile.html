@@ -1,0 +1,23 @@
+<div class="card meetings cf">
+    
+      <div class="textintro">
+    
+          <h1>Upload Your image</h1>
+          <form class="formgroup"
+          name="myform"
+          ng-submit="uploadFile(file);changeView('/profile')"
+          novalidate>
+          
+          
+          <div class="inputwrapper2">     
+            <input type="file" value ="upload"id ="fileButton"
+             accept="txt" file-model="file" class="form-control">
+        </div>
+    
+         
+    
+          <button type="submit" class="btn"
+          ng-disable="myform.$invalid">+</button>
+      </form>
+      </div>
+</div>          
