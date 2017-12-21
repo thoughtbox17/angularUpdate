@@ -1,9 +1,9 @@
 
 <div class="card meetings cf">
     <div class="list" >
-            
+        <div ng-show="!theUserThings.length">No Projects</div>
         <div class="theUserThing"   ng-repeat="(key,theUserThing) in theUserThings">
-    
+            
             <h1> {{theUserThing.name | uppercase}} </h1>
             
             

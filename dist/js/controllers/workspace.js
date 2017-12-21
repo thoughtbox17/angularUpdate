@@ -27,8 +27,16 @@ myApp.controller('WorkSpaceController',
     
 
     $scope.whichworkspace=userworkspace;
+    
+    userworkspace.$loaded().then(function(data) {
+        $rootScope.howManyWorkSpaces = userworkspace.length;
+        console.log(userworkspace.length);
+      });
+      userworkspace.$watch(function(data) {
+        $rootScope.howManyWorkSpaces = userworkspace.length;
+      });
 
-    //console.log('Project: '+$scope.whichproject);
+    
 
    
 

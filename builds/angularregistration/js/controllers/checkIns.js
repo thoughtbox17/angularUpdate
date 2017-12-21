@@ -88,6 +88,7 @@ var authorIdRef = $firebaseObject(authorId);
 
 
 $scope.wsname=$firebaseArray(workspacename);
+$scope.wsnameOb=$firebaseObject(workspacename);
 console.log('workspace name: '+$scope.wsname[0]);
 
 
